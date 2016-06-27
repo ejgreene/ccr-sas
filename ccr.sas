@@ -9,10 +9,11 @@
 /* LEGAL STUFF */
 /***************/
 
-/* Copyright © 2015 Erich J. Greene
+/* Copyright © 2015,2016 Erich J. Greene
 
    Erich J. Greene, Yale Center for Analytical Sciences, March-June 2015
    Revised Sept-Oct 2015
+   Revised June 2016
 
    This macro is distributed under the terms of Version 3 of the GNU
    Lesser General Public License (LGPL).  It is distributed in the
@@ -1461,22 +1462,18 @@ proc sort data=_final; by &stratid _rno;
 
 /* Generate list of all possible group pairings -- needed to detect cases
    of full constraint to opposite arms */
-data _allpairs(keep=_group:); set _d(keep=&clustid) end=_eof;
-    array _g(&n) _temporary_;
-    _i+1;
-    _g[_i]=&clustid;
-    if _eof then do _j=1 to dim(_g)-1;
-        do _k=_j+1 to dim(_g);
-            _group1=_g[_j];
-            _group2=_g[_k];
-            output;
-        end;
-    end;
-run;
+proc sql;
+    create table _allpairs as
+        select d1.&clustid as _group1,d2.&clustid as _group2,
+               catx(' and ',_group1,_group2) format=&pairfmt as _pairtext
+        from _d as d1,_d as d2
+        where _group1 < _group2
+        order by _group1,_group2;
+quit;
 
 /* Combine group combination counts from all arms */
 data _alloutgroup; set _outgroup:; run;
-proc freq data=_alloutgroup noprint;
+proc freq data=_alloutgroup order=internal noprint;
     weight _count;
     tables _group1*_group2/norow nocol nopercent nocum noprint list
                            out=_seenpairs(keep=_group: count
