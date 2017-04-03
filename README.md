@@ -14,7 +14,7 @@ The sample output in `ccr_example_output.pdf` can be generated from the macro an
      seed=22571);
 ```
 
-This usage information is lifted from the macro comments; a more user-friendly article has been accepted for publication in the _Journal of Statistical Software_ and will be posted here when it's out.
+This usage information is lifted from the macro comments; for a more user-friendly article, see the _Journal of Statistical Software_ article, `E Greene CCR paper.pdf`.
 
 ```SAS
 /****************************/
