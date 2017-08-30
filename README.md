@@ -1,5 +1,9 @@
-CCR for SAS<sup>&reg;</sup>
-===
+# CCR for SAS<sup>&reg;</sup>
+
+---
+If you use this software, please cite [this article](https://github.com/ejgreene/ccr-sas/blob/master/E%20Greene%20CCR%20paper.pdf):
+> Greene, E.J.  A SAS macro for covariate-constrained randomization of general cluster-randomized and unstratified designs. _Journal of Statistical Software_ 2017, 77(CS1):1-20.
+---
 
 This SAS macro for covariate-constrained randomization is released under the GNU Lesser General Public License (see `lgpl.txt` and `gpl.txt`).
 
@@ -14,7 +18,7 @@ The sample output in `ccr_example_output.pdf` can be generated from the macro an
      seed=22571);
 ```
 
-This usage information is lifted from the macro comments; for a more user-friendly article, see the _Journal of Statistical Software_ article, `E Greene CCR paper.pdf`.
+This usage information is lifted from the macro comments; for a more user-friendly article, see [here](https://github.com/ejgreene/ccr-sas/blob/master/E%20Greene%20CCR%20paper.pdf).
 
 ```SAS
 /****************************/
